@@ -46,6 +46,7 @@ form input{
 form button{
     border:0;
     outline:0;
+    cursor: pointer;
 }
 form button i{
     font-size:23px;

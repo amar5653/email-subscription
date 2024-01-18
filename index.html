@@ -13,13 +13,36 @@
         <h1>Coming Soon!</h1>
         <h2>My brand new <br> website on its way</h2>
         <p>Subscribe for more details!</p>
-        <form >
+        <form name="submit-to-google-sheet">
                  <input type="email" name="email" id="email" placeholder="Your email id">
                 <button type="submit"><i class='fa-solid fa-paper-plane'></i></button>
                 
         </form>
-        <span>Thank you</span>
+        <span></span>
     </div>
     </div>
+   
+      
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwKCXQnxiuOSYoWkhkFxivgVQgyChJikqTpCDnqY-YtKq-q09B4WFO0mSeyzj7sogqq/exec'
+        const form = document.forms['submit-to-google-sheet'];
+        const span = document.querySelector("span");
+       
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {span.innerHTML = "Thank you for subscribing!";
+               setTimeout(()=>{
+                span.innerHTML = "";
+               },6000);
+               form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+           
+        });
+     
+
+      </script>
 </body>
 </html>
